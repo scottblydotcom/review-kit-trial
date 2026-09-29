@@ -10,7 +10,7 @@ permissions:
   pull-requests: write
 jobs:
   review:
-    uses: aowen14/review-kit/.github/workflows/review.yml@v1
+    uses: scottblydotcom/review-kit/.github/workflows/review.yml@diag/show-output
     # Pass secrets by name: `secrets: inherit` only reaches reusable workflows
     # owned by the same user or org, and review-kit is owned by aowen14.
     secrets:
