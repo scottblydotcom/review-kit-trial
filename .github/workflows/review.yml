@@ -1,0 +1,18 @@
+# Copy to .github/workflows/review.yml. Needs a CLAUDE_CODE_OAUTH_TOKEN or ANTHROPIC_API_KEY secret.
+name: Claude review
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+  pull_request_target:   # fork-PR notice only; never checks out or reviews PR code
+    types: [opened]
+permissions:
+  contents: read
+  pull-requests: write
+jobs:
+  review:
+    uses: aowen14/review-kit/.github/workflows/review.yml@v1
+    # Pass secrets by name: `secrets: inherit` only reaches reusable workflows
+    # owned by the same user or org, and review-kit is owned by aowen14.
+    secrets:
+      CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
